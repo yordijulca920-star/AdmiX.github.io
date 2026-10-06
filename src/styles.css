@@ -1,0 +1,162 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  --color-bg: var(--admix-bg);
+  --color-surface: var(--admix-surface);
+  --color-surface-2: var(--admix-surface-2);
+  --color-fg: var(--admix-fg);
+  --color-muted: var(--admix-muted);
+  --color-subtle: var(--admix-subtle);
+  --color-border: var(--admix-border);
+  --color-primary: var(--admix-primary);
+  --color-primary-fg: var(--admix-primary-fg);
+  --color-success: var(--admix-success);
+  --color-danger: var(--admix-danger);
+  --color-warn: var(--admix-warn);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --shadow-border: var(--admix-shadow);
+  --shadow-border-hover: var(--admix-shadow-hover);
+}
+
+:root {
+  --admix-bg: #090b10;
+  --admix-surface: #12151c;
+  --admix-surface-2: #1a1e28;
+  --admix-fg: #eef1f4;
+  --admix-muted: #8b939e;
+  --admix-subtle: #6b7380;
+  --admix-border: color-mix(in oklab, #eef1f4 12%, transparent);
+  --admix-primary: #4fb8ae;
+  --admix-primary-fg: #071210;
+  --admix-success: #5dba7a;
+  --admix-danger: #e06b63;
+  --admix-warn: #c9a36b;
+  --admix-shadow: 0 0 0 1px rgba(238, 241, 244, 0.08);
+  --admix-shadow-hover: 0 0 0 1px rgba(238, 241, 244, 0.14);
+
+  --motion-stagger: 40ms;
+  --motion-micro: 80ms;
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+  --motion-medium: 350ms;
+  --motion-slow: 400ms;
+  --motion-emphasis: 500ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-y-medium: 12px;
+  --motion-scale-modal: 0.96;
+}
+
+html.light {
+  --admix-bg: #f3f1eb;
+  --admix-surface: #fffcf7;
+  --admix-surface-2: #ebe7df;
+  --admix-fg: #16181d;
+  --admix-muted: #5c6370;
+  --admix-subtle: #7a8190;
+  --admix-border: color-mix(in oklab, #16181d 12%, transparent);
+  --admix-primary: #0f7c74;
+  --admix-primary-fg: #f4fffd;
+  --admix-success: #2f8a4e;
+  --admix-danger: #c44740;
+  --admix-warn: #8a6a32;
+  --admix-shadow: 0 0 0 1px rgba(22, 24, 29, 0.06), 0 1px 2px -1px rgba(22, 24, 29, 0.06);
+  --admix-shadow-hover: 0 0 0 1px rgba(22, 24, 29, 0.1), 0 1px 2px -1px rgba(22, 24, 29, 0.08);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100dvh;
+    background: var(--admix-bg);
+    color: var(--admix-fg);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    font-family: var(--font-display);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--admix-fg) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--admix-fg) 5%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.stagger-in > * {
+  animation: admix-rise var(--motion-slow) var(--ease-smooth-out) both;
+}
+
+.stagger-in > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-in > *:nth-child(2) { animation-delay: 80ms; }
+.stagger-in > *:nth-child(3) { animation-delay: 140ms; }
+.stagger-in > *:nth-child(4) { animation-delay: 200ms; }
+.stagger-in > *:nth-child(5) { animation-delay: 260ms; }
+.stagger-in > *:nth-child(6) { animation-delay: 320ms; }
+.stagger-in > *:nth-child(7) { animation-delay: 380ms; }
+.stagger-in > *:nth-child(8) { animation-delay: 440ms; }
+
+@keyframes admix-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-in > * {
+    animation: none;
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.safe-bottom {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+}
+
+.safe-top {
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+}
