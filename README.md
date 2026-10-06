@@ -37,23 +37,14 @@ npm run typecheck
 
 ## Generar APK (Android)
 
-Cuando quieras un paquete instalable nativo:
+La app es una PWA con servidor (Vercel), así que el camino más simple es PWABuilder:
 
-1. Instala [Android Studio](https://developer.android.com/studio) y el SDK.
-2. En la raíz del proyecto:
+1. Publica la app en Vercel y abre la URL en el navegador para comprobar que carga.
+2. Entra a [pwabuilder.com](https://www.pwabuilder.com), pega la URL y pulsa **Start**.
+3. Pulsa **Package for stores → Android → Generate package** y descarga el zip.
+4. Dentro encontrarás el `.apk` (para instalar directo) y el `.aab` (para Google Play).
 
-```bash
-npm install @capacitor/core @capacitor/cli @capacitor/android
-npx cap init AdmiX admix.app --web-dir dist
-npx cap add android
-npm run build
-npx cap copy
-npx cap open android
-```
-
-3. En Android Studio: **Build → Generate Signed Bundle / APK**.
-
-Los recordatorios y la vibración se conectan a plugins nativos (`LocalNotifications`, `Haptics`) en esa etapa.
+Para pruebas rápidas, también puedes abrir la URL en Chrome del celular y elegir **Instalar aplicación**.
 
 ## Próximas versiones
 

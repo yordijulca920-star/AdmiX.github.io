@@ -3,6 +3,7 @@ import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { StoreGate } from "@/components/layout/store-gate";
 import { ThemeSync } from "@/components/layout/theme-sync";
+import { SwRegister } from "@/components/layout/sw-register";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "AdmiX";
@@ -40,6 +41,7 @@ export const Route = createRootRoute({
         <AuthProvider>
           <StoreGate>
             <ThemeSync />
+            <SwRegister />
             <Outlet />
           </StoreGate>
         </AuthProvider>
